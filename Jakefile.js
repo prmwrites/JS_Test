@@ -4,7 +4,7 @@
 "use strict";
 
 task("default", ["lint", "test"], function() {
-	console.log("BUILD OK");
+	console.log("\nBUILD OK");
 });
 
 desc("Lint everything");
@@ -21,7 +21,9 @@ task("lint", [], function() {
 
 desc("Test everything");
 task("test", [], function() {
-	console.log("test goes here: ");
+	
+	var reporter = require("nodeunit").reporters["default"];
+	reporter.run(['test']);
 });
 
 desc("Integrate");
