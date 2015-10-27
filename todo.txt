@@ -16,3 +16,8 @@ User Stories
 Engineering Tasks
 * server-side testing
 - client-side testing
+
+To Do on current task:
+- Choose framework
+- Abstract it
+- Swap out a different framework to make sure abstraction works

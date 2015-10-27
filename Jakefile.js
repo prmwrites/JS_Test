@@ -3,7 +3,7 @@
 
 "use strict";
 
-task("default", ["lint"], function() {
+task("default", ["lint", "test"], function() {
 	console.log("BUILD OK");
 });
 
@@ -17,6 +17,11 @@ task("lint", [], function() {
 	var options = nodeLintOptions();
 	var passed = lint.validateFileList(files.toArray(), options, {});
 	if (!passed) fail("Lint failed.");
+});
+
+desc("Test everything");
+task("test", [], function() {
+	console.log("test goes here: ");
 });
 
 desc("Integrate");
