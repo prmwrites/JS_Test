@@ -14,7 +14,9 @@ User Stories
 - Publish to the internet
 
 Engineering Tasks:
-
+* Spike serving a file
+- TDD file 
+- design work?
 
 To Do on current task:
 -
