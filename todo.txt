@@ -18,6 +18,8 @@ Engineering Tasks
 - client-side testing
 
 To Do on current task:
-- Choose framework
+
+
+Future Ideas:
 - Abstract it
 - Swap out a different framework to make sure abstraction works
