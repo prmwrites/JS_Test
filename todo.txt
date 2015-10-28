@@ -8,18 +8,18 @@ Minimum Marketable Feature:
 - more collaborative features?
 
 User Stories
-* "hello world" for the server
-- "hello world" for the client
-- support for multiple browsers
+* Serve a one-file homepage
+- Serve a 404 errors for everything elese
 - have marketing copy
+- Publish to the internet
 
-Engineering Tasks
-* Create a (very simple) HTTP server
-- client-side testing
+Engineering Tasks:
+
 
 To Do on current task:
-
+-
 
 Future Ideas:
+- Create 'fail fast' code
 - Abstract it
 - Swap out a different framework to make sure abstraction works

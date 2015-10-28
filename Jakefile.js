@@ -3,12 +3,14 @@
 
 "use strict";
 
-task("default", ["lint", "test"], function() {
+var semver = require("semver");
+
+task("default", ["version", "lint", "test"], function() {
 	console.log("\nBUILD OK");
 });
 
 desc("Lint everything");
-task("lint", [], function() {
+task("lint", ["version"], function() {
 	var lint = require("./build/lint/lint_runner.js");
 
 	var files = new jake.FileList();
@@ -20,7 +22,7 @@ task("lint", [], function() {
 });
 
 desc("Test everything");
-task("test", [], function() {
+task("test", ["version"], function() {
 	var reporter = require("nodeunit").reporters["default"];
 	reporter.run(['src/server/_server_test.js'], null, function(failures) {
 			if (failures) fail("Tests failed");
@@ -40,6 +42,19 @@ task("integrate", [ "default" ], function() {
 	console.log("4. 'git merge master --no-ff --log'");
 	console.log("5. 'git checkout master'");
 });
+
+desc("Check Node version");
+	task("version", function() {
+		console.log("Check Node version: .");
+		
+		var packageJson = require("./package.json");
+		var expectedVersion = packageJson.engines.node;
+		var actualVersion = process.version;
+
+		if (semver.neq(expectedVersion, actualVersion)) {
+			fail("Incorrect Node version: expected " + expectedVersion + ", but was " + actualVersion);
+		} 
+	});
 
 function nodeLintOptions() {
  return {
