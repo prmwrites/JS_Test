@@ -14,7 +14,7 @@ User Stories
 - have marketing copy
 
 Engineering Tasks
-* server-side testing
+* Create a (very simple) HTTP server
 - client-side testing
 
 To Do on current task:
