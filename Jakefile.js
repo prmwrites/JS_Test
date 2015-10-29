@@ -1,9 +1,17 @@
 (function() {
-/*global desc, task, jake, fail, complete */
+/*global desc, task, jake, fail, complete, directory */
 
 "use strict";
 
 var semver = require("semver");
+var TEMP_TESTFILE_DIR =  "generated/test";
+
+directory(TEMP_TESTFILE_DIR);
+
+desc("Delete all generated files");
+task("clean", [], function() {
+	jake.rmRf("generated");
+});
 
 task("default", ["version", "lint", "test"], function() {
 	console.log("\nBUILD OK");
@@ -22,7 +30,7 @@ task("lint", ["version"], function() {
 });
 
 desc("Test everything");
-task("test", ["version"], function() {
+task("test", ["version", TEMP_TESTFILE_DIR], function() {
 	var reporter = require("nodeunit").reporters["default"];
 	reporter.run(['src/server/_server_test.js'], null, function(failures) {
 			if (failures) fail("Tests failed");
