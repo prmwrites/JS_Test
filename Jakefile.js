@@ -22,18 +22,22 @@ desc("Lint everything");
 task("lint", ["version"], function() {
 	var lint = require("./build/lint/lint_runner.js");
 
-	var files = new jake.FileList();
+	var javascriptFiles = new jake.FileList();
 	files.include("**/*.js");
 	files.exclude("node_modules");
 	var options = nodeLintOptions();
-	var passed = lint.validateFileList(files.toArray(), options, {});
+	var passed = lint.validateFileList(javascriptFiles.toArray(), options, {});
 	if (!passed) fail("Lint failed.");
 });
 
 desc("Test everything");
 task("test", ["version", TEMP_TESTFILE_DIR], function() {
+	var testFiles = new jake.FileList();
+	files.include("**/_*_test.js");
+	files.exclude("node_modules");
+
 	var reporter = require("nodeunit").reporters["default"];
-	reporter.run(['src/server/_server_test.js'], null, function(failures) {
+	reporter.run(testFiles.toArray(), null, function(failures) {
 			if (failures) fail("Tests failed");
 			complete();
 		});
