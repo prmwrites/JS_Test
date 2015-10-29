@@ -4,13 +4,14 @@
 "use strict";
 
 var semver = require("semver");
-var TEMP_TESTFILE_DIR =  "generated/test";
+var GENERATED_DIR = "generated";
+var TEMP_TESTFILE_DIR = GENERATED_DIR + "/test";
 
 directory(TEMP_TESTFILE_DIR);
 
 desc("Delete all generated files");
 task("clean", [], function() {
-	jake.rmRf("generated");
+	jake.rmRf(GENERATED_DIR);
 });
 
 task("default", ["version", "lint", "test"], function() {

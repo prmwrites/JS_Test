@@ -8,15 +8,11 @@ Minimum Marketable Feature:
 - more collaborative features?
 
 User Stories
-* Serve a one-file homepage
-- Serve a 404 errors for everything elese
 - have marketing copy
 - Publish to the internet
 
 Engineering Tasks:
-* Spike serving a file
-- TDD file 
-- design work?
+- Exploratory testing
 
 To Do on current task:
 -
@@ -25,3 +21,6 @@ Future Ideas:
 - Create 'fail fast' code
 - Abstract it
 - Swap out a different framework to make sure abstraction works
+- Static checking of function parameters (rather than writing tests)
+- handle errors properly in server.js
+
