@@ -43,6 +43,13 @@ task("test", ["version", TEMP_TESTFILE_DIR], function() {
 		});
 	}, {async: true});
 
+desc("Deploy to Heroku");
+task("deploy", [ "default" ], function() {
+	console.log("1. Make sure 'git status' is clean.");
+	console.log("2. 'git push heroku master'");
+	console.log("3. 'jake test'");
+});
+
 desc("Integrate");
 task("integrate", [ "default" ], function() {
 	console.log("1. Make sure 'git status' is clean.");

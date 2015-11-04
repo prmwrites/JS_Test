@@ -5,6 +5,7 @@
 	var child_process = require("child_process");
 	var http = require("http");
 	var fs = require("fs");
+	var procfile = require("procfile");
 	var child;
 
 	exports.setUp = function(done) {
@@ -12,6 +13,8 @@
 	};
 
 	exports.tearDown = function(done) {
+		if (!child) return;
+
 		child.on("exit", function(code, signal) {
 			done();
 		});
@@ -45,14 +48,12 @@
 
 	function parseProcFile() {
 		var fileData = fs.readFileSync("Procfile", "utf8");
-		var matches = procFile.match(/^web:\s*((\S)+(\s+))+$/);
-
-		console.log("Matches: " + matches);
-
-
-
-
-		return ["node", "src/server/weewikipaint.js", "5000"];
+		var webCommand = procfile.parse(fileData).web;
+		webCommand.options = webCommand.options.map(function(element) {
+			if (element === "$PORT") return "5000";
+			else return element;
+		});
+		return webCommand;
 	}
 
 	function httpGet(url, callback) {
